@@ -433,8 +433,6 @@ function exibirLista(event) {
     return true
   }
 
-  // Modifica o botão de expandir
-  expand.innerHTML = `<i class="fa-solid fa-chevron-up fa-sm"></i>`
 
   // Rola para o resultado expandido
   resultado.scrollIntoView({behavior: "smooth"})
@@ -444,10 +442,13 @@ function exibirLista(event) {
   const resultados = document.querySelectorAll('.resultado');
   resultados.forEach((r) => {
     r.querySelector('.lista-servicos').hidden = true;
+    r.children[0].querySelector('.resultado-expand').innerHTML = `<i class="fa-solid fa-chevron-down fa-sm"></i>`
   });
 
   // Exibe a lista de serviços do resultado atual
   listaServicos.hidden = false
+  // Modifica o botão de expandir
+  expand.innerHTML = `<i class="fa-solid fa-chevron-up fa-sm"></i>`
 }
 
 // Listeners
