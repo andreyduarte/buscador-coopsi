@@ -250,10 +250,11 @@ function showResultados() {
     }
   }
 
-  let r = document.querySelectorAll('.resultado');
+  // Adiciona os listeners
+  let r = document.querySelectorAll('.resultado-expand');
   for (let resultado of r) {
-    resultado.addEventListener('mouseover', exibirLista);
-    resultado.addEventListener('mouseout', ocultarLista);
+    resultado.addEventListener('click', exibirLista);
+    //resultado.addEventListener('mouseout', ocultarLista);
   }
 }
 
@@ -332,6 +333,8 @@ function criarListaServicos(servicos) {
   const totalServicos = servicos.length;
   const itensPorColuna = Math.ceil(totalServicos / colunas);
 
+  if (servicoSelect.value != "0") return ""
+
   let listaHtml = `
   <div class="row mt-2 lista-servicos fs-6" hidden>
     <div class="col">
@@ -357,6 +360,9 @@ function criarListaServicos(servicos) {
   listaHtml += `
       </ul>
     </div>
+  </div>
+  <div class="d-flex justify-content-center mt-2 resultado-expand">
+    <i class="fa-solid fa-chevron-down fa-sm"></i>
   </div>
   `
 
@@ -398,6 +404,8 @@ function getLocal() {
           })
       }
     );
+  }else {
+    alert("Serviço de GPS indisponivel.")
   }
 }
 
@@ -410,9 +418,27 @@ async function getCoord(address) {
 }
 
 function exibirLista(event) {
+  // Verifica se é necessário exibir lista
   if (servicoSelect.value != 0) return false
+
+  // Cria seletores
   const resultado = event.target.closest('.resultado');
   const listaServicos = resultado.querySelector('.lista-servicos');
+  const expand = resultado.querySelector('.resultado-expand');
+
+  // Se já tiver expandido, contrai a lista
+  if (!listaServicos.hidden) {
+    listaServicos.hidden = true
+    expand.innerHTML = `<i class="fa-solid fa-chevron-down fa-sm"></i>`
+    return true
+  }
+
+  // Modifica o botão de expandir
+  expand.innerHTML = `<i class="fa-solid fa-chevron-up fa-sm"></i>`
+
+  // Rola para o resultado expandido
+  resultado.scrollIntoView({behavior: "smooth"})
+  window.scrollBy(0,-10)
 
   // Oculta a lista de serviços de todos os resultados
   const resultados = document.querySelectorAll('.resultado');
@@ -422,13 +448,6 @@ function exibirLista(event) {
 
   // Exibe a lista de serviços do resultado atual
   listaServicos.hidden = false
-}
-
-function ocultarLista(event) {
-  const resultado = event.target.closest('.resultado');
-  const listaServicos = resultado.querySelector('.lista-servicos');
-
-  listaServicos.hidden = true;
 }
 
 // Listeners
