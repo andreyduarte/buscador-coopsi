@@ -139,6 +139,9 @@ async function loadPsis() {
 async function loadBairros() {
   let bairros = {}
   for (let psi of Cooperados) {
+    // Evita resultados vazios
+    if (psi["Bairro"] == '') continue 
+
     // Cria os bairros e adiciona os psis de cada um
     if (!bairros[psi["Bairro"]]) {
       bairros[psi["Bairro"]] = {}
@@ -168,6 +171,7 @@ function loadServicos() {
   let servicos_ofertados_count = []
   for (let psi of Cooperados) {
     for (let ser of psi["Servicos"]) {
+      if (ser == "") continue // Evita resultados em branco
       if (!servicos_ofertados.includes(ser)) {
         servicos_ofertados.push(ser)
         servicos_ofertados_count.push(1)
@@ -320,11 +324,12 @@ function servicoNome(id) {
   for (let cat of servicos) {
     for (let s of cat[1]) {
       if (s[0] == id) {
+        if (s[1] == "") console.log(s)
         return s[1]
       }
     }
   }
-  return ""
+  return id
 }
 
 function criarListaServicos(servicos) {
