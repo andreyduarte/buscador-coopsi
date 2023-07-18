@@ -263,15 +263,18 @@ function showResultados() {
 
 function addItem(index, dict) {
   // Prepara dados
-  // Serviços
-  let servText, count;
-  if (servicoSelect.value == 0) {
-    count = dict["servicos"].length
-    servText = count + " Serviços Ofertados"
-  } else {
-    count = dict["servicos"].findIndex(e => e[0] == servicoSelect.value)
-    servText = dict["servicos"][count][1] + " realizam " + servicoSelect.options[servicoSelect.selectedIndex].text
-  }
+    // Serviços
+    let servText = "", distText = "", count;
+    if (servicoSelect.value == "0") {
+      count = dict["servicos"].length
+      servText = `
+      <div class="row mt-1 serv-text">
+        <div class="col-12">
+          <p class="card-text"><i class="fa-solid fa-clipboard-check fa-lg logo"></i>${count} Serviços Ofertados</p>
+        </div>
+      </div>
+      `
+    }
   // Link de Conversa
   let link = "https://wa.me/5527999949982?text=";
   if (servicoSelect.value == 0) {
@@ -292,11 +295,7 @@ function addItem(index, dict) {
               <p class="card-text"><i class="fa-solid fa-building fa-lg logo"></i> ${parseInt(dict["dist"])} Km</p>
             </div>
           </div>
-          <div class="row mt-2 serv-text">
-            <div class="col-12">
-              <p class="card-text"><i class="fa-solid fa-clipboard-check fa-lg logo"></i> ${servText}</p>
-            </div>
-          </div>
+          ${servText}
           ${criarListaServicos(dict["servicos"])}
         </div>
       </div>
