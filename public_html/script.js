@@ -390,8 +390,10 @@ function getDist(p1, p2) {
 
 function getLocal() {
   if (navigator.geolocation) {
+    console.log('navigator.geolocation',navigator.geolocation)
     navigator.geolocation.getCurrentPosition(
       (position) => {
+        console.log('position',position)
         local = [position.coords.latitude, position.coords.longitude]
         const latlng = {
           lat: position.coords.latitude,
@@ -400,6 +402,7 @@ function getLocal() {
         geocoder
           .geocode({ location: latlng })
           .then((response) => {
+            console.log('response', response)
             if (response.results[0]) {
               localInput.value = response.results[0].formatted_address
             } else {
