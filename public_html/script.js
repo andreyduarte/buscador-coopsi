@@ -5,7 +5,7 @@ let local = [];
 
 // Lista de serviços da tabela FENAPSI
 const servicos = [
-  ["Frequentes",
+  ["Mais Buscados",
     [
     ]
   ],
