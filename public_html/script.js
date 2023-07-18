@@ -340,23 +340,23 @@ function criarListaServicos(servicos) {
   if (servicoSelect.value != "0") return ""
 
   let listaHtml = `
-  <div class="row mt-2 lista-servicos fs-6" hidden>
+  <div class="row mt-2 lista-servicos fs-6 lh-sm" hidden>
     <div class="col">
-      <ul class='mb-0'>
+      <ul class='list-group list-group-flush'>
   `
 
   // Loop para criar os itens da lista
   for (let i = 0; i < totalServicos; i++) {
     // Adiciona a tag <li> com o serviço
-    listaHtml += `<li>${servicoNome(servicos[i][0])}</li>`;
+    listaHtml += `<li class="list-group-item px-0">${servicoNome(servicos[i][0])}</li>`;
 
     // Verifica se precisa criar uma nova coluna
     if ((i + 1) % itensPorColuna === 0 && i + 1 !== totalServicos) {
       listaHtml += `
           </ul>
         </div>
-        <div class="col">
-          <ul>
+        <div class="col m-0">
+          <ul class="list-group list-group-flush">
       `
     }
   }
