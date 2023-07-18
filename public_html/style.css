@@ -1,5 +1,8 @@
 /*#FFFFFF, #E5EDF0, #FEFEFE, #3698A1, #FFFFFF, #509FA6, #FFFFFF, #FFFFFF, #C797B1, #606060*/
 
+.logo-font {
+  font-family: 'Roboto', serif;
+  }
 
 body {
   background-color: #fff;
