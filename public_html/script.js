@@ -95,6 +95,7 @@ const servicos = [
 // Seletores HTML
 const servicoSelect = document.getElementById('servicoOferecido');
 const localInput = document.getElementById('localizacao');
+const loading = document.getElementById('spinner');
 
 // Serviços google
 var geocoder = new google.maps.Geocoder();
@@ -213,7 +214,14 @@ function loadServicos() {
   }
 }
 
-function showResultados() {
+async function showResultados() {
+  // Limpa os resultados
+  document.getElementById('psychologistAccordion').innerHTML = '';
+  // Faz um carregamento falso
+  loading.hidden = false
+  await sleep(750)
+  loading.hidden = true
+  // Verifica o serviço escolhido
   let servico = servicoSelect.value || 0;
   // Cria uma nova lista pra ordem de exibições
   let resultados = []
@@ -241,8 +249,6 @@ function showResultados() {
     // Limita a 5 primeiros resultados  
     resultados = resultados.slice(0, 5)
   }
-  // Limpa os resultados
-  document.getElementById('psychologistAccordion').innerHTML = '';
 
   // Insere os itens
   if (resultados.length > 0) {
@@ -270,7 +276,7 @@ function addItem(index, dict) {
       servText = `
       <div class="row mt-1 serv-text">
         <div class="col-12">
-          <p class="card-text"><i class="fa-solid fa-clipboard-check fa-lg logo"></i>${count} Serviços Ofertados</p>
+          <p class="card-text"><i class="fa-solid fa-clipboard-check fa-lg pink-icon"></i>${count} Serviços Ofertados</p>
         </div>
       </div>
       `
@@ -292,7 +298,7 @@ function addItem(index, dict) {
           <h5 class="card-title">${dict["nome"]}</h5>
           <div class="row dist-text">
             <div class="col-12">
-              <p class="card-text"><i class="fa-solid fa-building fa-lg logo"></i> ${parseInt(dict["dist"])} Km</p>
+              <p class="card-text"><i class="fa-solid fa-building fa-lg pink-icon"></i> ${parseInt(dict["dist"])} Km</p>
             </div>
           </div>
           ${servText}
@@ -300,9 +306,9 @@ function addItem(index, dict) {
         </div>
       </div>
       <div class="w-button col-3 rounded-end d-flex justify-content-center align-items-center">
-        <a href="${link}">
+        <a href="${link}" style="text-decoration: none">
           <div>
-            <i class="w-icon fa-brands fa-whatsapp fa-3x"></i>
+            <i class="w-icon fa-brands fa-whatsapp fa-2x"></i> <i class="fa-solid fa-chevron-right fa-2x"></i>
           </div> 
         </a>
       </div>
@@ -455,6 +461,10 @@ function exibirLista(event) {
   listaServicos.hidden = false
   // Modifica o botão de expandir
   expand.innerHTML = `<i class="fa-solid fa-chevron-up fa-sm"></i>`
+}
+
+function sleep(milliseconds) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
 // Listeners
