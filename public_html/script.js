@@ -361,7 +361,7 @@ function criarListaServicos(servicos) {
       </ul>
     </div>
   </div>
-  <div class="d-flex justify-content-center mt-2 resultado-expand">
+  <div class="d-flex justify-content-center mt-2 mb-2 resultado-expand">
     <i class="fa-solid fa-chevron-down fa-sm"></i>
   </div>
   `
