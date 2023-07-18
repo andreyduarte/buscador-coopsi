@@ -228,11 +228,10 @@ function showResultados() {
   // Proximidade
   if (localInput.value != '') {
     resultados.sort(function(a, b) {
-      if (a.nome == "Online") return 1
-      if (b.nome == "Online") return -1
-
       a.dist = parseInt(getDist(a.coord, local)) / 1000;
       b.dist = parseInt(getDist(b.coord, local)) / 1000;
+      if (a.nome == "Online") a.dist = 0
+      if (b.nome == "Online") b.dist = 0
       return a.dist - b.dist;
     })
     // Limita a 5 primeiros resultados  
@@ -311,7 +310,7 @@ function addItem(index, dict) {
 
   let e = document.getElementById("result-" + index)
   // Oculta informações indisponíveis
-  if (localInput.value == '') {
+  if (localInput.value == '' || dict["nome"] == "Online") {
     e.querySelector(".dist-text").hidden = true
   }
 
