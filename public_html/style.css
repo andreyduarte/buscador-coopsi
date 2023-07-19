@@ -127,7 +127,6 @@ td {
   position:fixed;
   animation: animate 360s linear infinite;
   bottom: -50%;
-  left: -25%;
   opacity :0.15;
   pointer-events:none;
   z-index:-100;
@@ -141,16 +140,5 @@ td {
         rotate(0deg);
   }
 
-  50%{
-    transform: 
-      translateX(500px)
-      rotate(360deg);
-  }
-
-  100%{
-      transform: 
-        translateX(0px)
-        rotate(0deg);
-  }
 
 }
