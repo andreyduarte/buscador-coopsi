@@ -17,9 +17,10 @@ body {
 .btn-outline-success {
   color: #A05584;
   border-color: #A05584;
+  background-color: #FFFFFF !important;
+
 }
 
-.btn-outline-success:hover,
 .btn-outline-success:hover {
   background-color: #A05584 !important;
   border-color: #A05584 !important;
@@ -32,7 +33,7 @@ body {
 
 .btn-success:hover,
 .btn-success:active {
-  background-color: #fff !important;
+  background-color: #ffffff !important;
   border-color: #A05584 !important;
   color: #A05584 !important;
 }
