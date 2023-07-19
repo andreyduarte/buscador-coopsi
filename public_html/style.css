@@ -141,16 +141,5 @@ td {
         rotate(0deg);
   }
 
-  50%{
-    transform: 
-      translateX(500px)
-      rotate(360deg);
-  }
-
-  100%{
-      transform: 
-        translateX(0px)
-        rotate(0deg);
-  }
 
 }
