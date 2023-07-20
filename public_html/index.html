@@ -9,6 +9,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=League+Spartan">
   <script src="https://cdn.jsdelivr.net/npm/csv-js@1.0.0/csv.min.js"></script>
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCHNy-kJfxRAuDaUVCUnpqCOHbmXPOZlB4&libraries=places&region=BR&language=pt-BR"></script>
@@ -22,7 +23,7 @@
       <defs>
       <style type="text/css">
         <![CDATA[
-        .fil0 {fill:#A05584}
+        .fil0 {fill:#A1477A}
         .fil1 {fill:#429BA1}
         ]]>
       </style>
@@ -39,10 +40,18 @@
       </g>
     </svg>
   </div>
-  <div class='container'>
-    <h2 class="text-center pt-4 pink">Buscador de Serviços de Psicologia</h2>
+  <!--Subtitulo-->
+  <div class="p-2 mx-3">
+    <h5 style="font-weight: 600;" class="cyan text-center align-middle">Rede de Profissionais e Consultórios de Psicologia</h5>
+  </div>
+  <!--Buscador-->
+  <div class='container py-0'>
+    
+    <!--Titulo-->
+    <h1 class="text-center py-md-4 py-2 pink">Buscador de Serviços</h1>
 
-    <div class="row justify-content-center mt-5 py-10">
+    <!--Inputs-->
+    <div class="row justify-content-center">
       <div class="col-12 col-lg-6 col-xl-6 col-xxl-6">
         <form>
           <div class="mb-3">
@@ -102,35 +111,42 @@
         <div id='spinner' class="spinner-border pink" role="status" hidden>
         </div>
       </div>
-      <div class="col-12 col-lg-6 col-xl-6 col-xxl-6 mt-5" id="psychologistAccordion">
+      <div class="col-12 col-lg-6 col-xl-6 col-xxl-6 mt-3" id="psychologistAccordion">
         <!-- Aqui são inseridos os resultados da pesquisa -->
       </div>
     </div>
-
-    <div class="d-flex justify-content-center pt-1 gx-4">
-      <div>
-        <a href="https://www.instagram.com/coopsi.es/" style="color:black; text-decoration: none;">
-          <p>
-            <i class="fa-brands fa-square-instagram fa-lg"></i> @coopsi.es
-          </p>
-        </a>
-      </div>
-      <div class="mx-4">
-        <a href="https://www.facebook.com/profile.php?id=100093611315973&mibextid=ZbWKwL"
-          style="color:black; text-decoration: none;">
-          <p>
-            <i class="fa-brands fa-square-facebook fa-lg"></i> Coopsi-ES
-          </p>
-        </a>
-      </div>
-      <div>
-        <a href="https://www.linkedin.com/company/coopsies/" style="color:black; text-decoration: none;">
-          <p>
-            <i class="fa-brands fa-linkedin fa-lg"></i> coopsies
-          </p>
-        </a>
+    <div class="row">
+      <div class="d-flex justify-content-center p-2 gx-4 fs-5">
+        <h4 class="cyan">Cooperar</h4>&#160;<h4 class="pink"> é melhor que competir</h4> 
       </div>
     </div>
+    <div class="row">
+      <div class="d-flex justify-content-center pt-1 gx-4">
+        <div>
+          <a href="https://www.instagram.com/coopsi.es/" style="color:black; text-decoration: none;">
+            <p>
+              <i class="fa-brands fa-square-instagram fa-lg"></i> @coopsi.es
+            </p>
+          </a>
+        </div>
+        <div class="mx-4">
+          <a href="https://www.facebook.com/profile.php?id=100093611315973&mibextid=ZbWKwL"
+            style="color:black; text-decoration: none;">
+            <p>
+              <i class="fa-brands fa-square-facebook fa-lg"></i> Coopsi-ES
+            </p>
+          </a>
+        </div>
+        <div>
+          <a href="https://www.linkedin.com/company/coopsies/" style="color:black; text-decoration: none;">
+            <p>
+              <i class="fa-brands fa-linkedin fa-lg"></i> coopsies
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+    
   </div>
 
   <script src="script.js"></script>
@@ -138,7 +154,6 @@
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
 </body>
-
 
   <!--Background Animado-->
   <div class="area" style="pointer-events: none;">

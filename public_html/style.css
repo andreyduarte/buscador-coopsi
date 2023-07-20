@@ -5,8 +5,8 @@
   }
 
 body {
+  font-family: 'Roboto', serif;
   background-color: #EEEEEC;
-  padding-top: 20px;
 }
 
 .container {
@@ -15,43 +15,47 @@ body {
 }
 
 .btn-outline-success {
-  color: #A05584;
-  border-color: #A05584;
+  color: #A1477A;
+  border-color: #A1477A;
   background-color: #FFFFFF !important;
 
 }
 
 .btn-outline-success:hover {
-  background-color: #A05584 !important;
-  border-color: #A05584 !important;
+  background-color: #A1477A !important;
+  border-color: #A1477A !important;
 }
 
 .btn-success {
-  background-color: #A05584;
-  border-color: #A05584;
+  background-color: #A1477A;
+  border-color: #A1477A;
 }
 
 .btn-success:hover,
 .btn-success:active {
   background-color: #ffffff !important;
-  border-color: #A05584 !important;
-  color: #A05584 !important;
+  border-color: #A1477A !important;
+  color: #A1477A !important;
+}
+
+.cyan {
+  color: #429BA1;
 }
 
 .pink {
-  color: #A05584;
+  color: #A1477A;
 }
 
 .pink-icon {
-  color: #A05584;
+  color: #A1477A;
   background-repeat: no-repeat;
   height: 20px;
   width: 20px;
 }
 
-h2 {
-  font-family: 'Roboto', serif;
-  font-weight: 900;
+h1,h2,h3,h4,h5 {
+  font-family: 'League Spartan', serif;
+  font-weight: bold;
 }
 
 .table-responsive {
@@ -110,7 +114,7 @@ td {
 
 .area{
   background: #ffffff;  
-  background: -webkit-linear-gradient(to left, #ffffff, #A05584);  
+  background: -webkit-linear-gradient(to left, #ffffff, #A1477A);  
   width: 100%;
   height: 100%;
 }
