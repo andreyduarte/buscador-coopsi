@@ -219,7 +219,7 @@ async function showResultados() {
   document.getElementById('psychologistAccordion').innerHTML = '';
   // Faz um carregamento falso
   loading.hidden = false
-  await sleep(750)
+  await sleep(450)
   loading.hidden = true
   // Verifica o serviço escolhido
   let servico = servicoSelect.value || 0;
