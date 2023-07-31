@@ -282,7 +282,7 @@ function addItem(index, dict) {
       `
     }
   // Link de Conversa
-  let link = "https://wa.me/5527998790593?text=";
+  let link = "https://wa.me/5527996953392?text=";
   if (servicoSelect.value == 0) {
     link += `Olá! Gostaria de marcar um atendimento em ${dict["nome"]}. Poderia me dar mais informações?`
   } else {
