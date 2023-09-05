@@ -425,7 +425,11 @@ async function getCoord(address) {
   if (address == "") address = "Centro de Vitória"
   if (address == "Online") address = "Centro de Vitória"
 
-  let r = await geocoder.geocode({ address: address })
+  try {
+    let r = await geocoder.geocode({ address: address })
+  } catch (error) {
+    r = await geocoder.geocode({ address: address })
+  }
   return [r.results[0].geometry.location.lat(), r.results[0].geometry.location.lng()]
 }
 
