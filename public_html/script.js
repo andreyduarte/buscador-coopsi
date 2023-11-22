@@ -1,93 +1,31 @@
 // Variáveis
-let Cooperados = []; // Lista geral de psis
+let Lista = []; // Lista geral de psis
 let Bairros = []; // Lista geral de Bairros
 let local = [];
 
 // Lista de serviços da tabela FENAPSI
 const servicos = [
-  ["Mais Buscados",
+  ["Psicoterapia",
     [
+      [1,"Individual"],
+      [2,"Infanti"],
+      [3,"Grupo"],
+      [4,"Casal"],
+      [5,"Familiar"]
     ]
   ],
-  ["Diagnostico Psicológico",
+  ["Avaliação",
     [
-      [11, "Consulta Psicológica"],
-      [12, "Anamnese"],
-      [13, "Elaboração de perfil profissiográfico"],
-      [14, "Avaliação de desempenho escolar e aprendizagem"],
-      [15, "Avaliação Psicológica"],
-      [16, "Avaliação das características psicológicas esportivas"],
-      [17, "Avaliação de prontidão para alfabetização"],
-      [18, "Avaliação de nível intelectual"],
-      [19, "Avaliação Psicomotora"],
-      [110, "Avaliação Psicomotora Relacionada ao Grafismo"],
-      [111, "Avaliação das características da personalidade"],
-      [112, "Avaliação da estrutura e dinâmica da personalidade "],
-      [113, "Entrevista devolutiva"],
-      [114, "Observação de campo com visita escolar e domiciliar"],
-      [115, "Atuação junto à comunidade"],
-      [116, "Realização de exames psicológicos (psicotécnicos)"],
-      [117, "Realização de avaliação psicológica p\ Carteira Nacional de Habilitação"],
-      [118, "Realização de avaliação psicológica p\ concessão de registro e/ou porte de arma de fogo"]
+      [6,"Neuropsicológica"],
+      [7,"para Bariátrica"],
+      [8,"para Vasectomia"],
+      [9,"para Porte de Armas"]
     ]
   ],
-  ["Orientação e Seleção Profissional",
+  ["Orientação",
     [
-      [21, "Orientação Vocacional"],
-      [22, "Recrutamento e seleção de pessoal"],
-      [23, "Elaboração de instrumentos psicológicos"],
-      [24, "Desenvolvimento de projetos relativos ao trabalho"],
-      [25, "Identificação de necessidades humanas"],
-      [26, "Partic. em prog. Educacionais, culturais, recretativos"],
-      [27, "Orientação e acompanhamento"],
-      [28, "Orientação e encaminhamento de empregados"],
-      [29, "Avaliação de programa de treinamento"],
-      [210, "Orientação e Treinamento/ Desenvolvimento"],
-      [211, "Desligamento de empregados"],
-      [212, "Preparação para aposentadoria "],
-    ]
-  ],
-  ["Orientação e Psicopedagógica",
-    [
-      [31, "Realização de pesquisas"],
-      [32, "Planejamento psicopedagógico"],
-      [33, "Orientação psicopedagógico"],
-      [34, "Preparação para aposentadoria "],
-    ]
-  ],
-  ["Solução de Problemas Psicológicos",
-    [
-      [41, "Psicomotricidade individual"],
-      [42, "Psicomotricidade em grupo"],
-      [43, "Problemas de aprendizagem individual"],
-      [44, "Problemas de aprendizagem em grupo"],
-      [45, "Psicoterapia individual"],
-      [46, "Psicoterapia em casal"],
-      [47, "Psicoterapia familiar"],
-      [48, "Psicoterapia em grupo"],
-      [49, "Ludoterapia individual"],
-      [410, "Ludoterapia em grupo"],
-      [411, "Terapia psicomotora individual"],
-      [412, "Terapia psicomotora em grupo"],
-    ]
-  ],
-  ["Acompanhamento e Orientação Psicológica",
-    [
-      [51, "Acompanhamento psicológico da gravidez, parto e puerperio"],
-      [52, "Acompanhamento psicológico da gravidez em grupo"],
-      [53, "Acompanhamento psicoterapêutico"],
-      [54, "Acompanhamento psicológico de deficientes"],
-      [55, "Acompanhamento psicológico de idosos"],
-      [56, "Acompanhamento e reabilitação profissional"],
-    ]
-  ],
-  ["Assessoria em Psicologia",
-    [
-      [61, "Consultoria empresarial"],
-      [62, "Realização de pesquisa"],
-      [63, "Movimentação de pessoal"],
-      [64, "Supervisão de atividades psicológicas"],
-      [65, "Assessorias a instituições escolares"]
+      [10,"Profissional"],
+      [11,"de Carreira"]
     ]
   ]
 ]
@@ -108,108 +46,49 @@ init()
 
 // Funções
 async function init() {
-  Cooperados = await loadPsis()
+  Lista = await loadCSV()
   Bairros = await loadBairros()
   loadServicos()
 }
 
-async function loadPsis() {
+async function loadCSV() {
   // Carrega o csv
   var response = await fetch('psicologos.csv')
   var data = await response.text()
-  lista = CSV.parse(data)
-  // Cria e popula a lista de cooperados
-  let header = lista.shift()
-  let coop = []
-  for (let line of lista) {
-    let item = {}
-    for (let col = 0; col < header.length; col++) {
-      item[header[col]] = line[col]
-    }
-    coop.push(item)
-  }
-  // Organiza as células-array
-  for (let psi of coop) {
-    psi["FaixasEtarias"] = psi["FaixasEtarias"].toString().split(',').filter(e => e != "")
-    psi["PublicoAlvo"] = psi["PublicoAlvo"].toString().split(',').filter(e => e != "")
-    psi["Servicos"] = psi["Servicos"].toString().split(',').filter(e => e != "")
-  }
-  return coop
+  return CSV.parse(data)
 }
 
 async function loadBairros() {
   let bairros = {}
-  for (let psi of Cooperados) {
+  for (let line of Lista) {
     // Evita resultados vazios
-    if (psi["Bairro"] == '') continue 
-
+    if (line[0] == '') continue 
     // Cria os bairros e adiciona os psis de cada um
-    if (!bairros[psi["Bairro"]]) {
-      bairros[psi["Bairro"]] = {}
-      bairros[psi["Bairro"]].nome = psi["Bairro"]
-      bairros[psi["Bairro"]].cooperados = []
-      bairros[psi["Bairro"]].servicos = []
-      bairros[psi["Bairro"]].coord = await getCoord(psi["Bairro"] + ", ES")
-    }
-    bairros[psi["Bairro"]].cooperados.push(psi.ID)
+    bairros[line[0]] = {}
+    bairros[line[0]].nome = line[0]
+    bairros[line[0]].servicos = []
+    bairros[line[0]].coord = await getCoord(psi["Bairro"] + ", ES")
 
     // Lista os serviços oferecidos pelos psis no bairro
-    for (let s of psi["Servicos"]) {
-      let index = bairros[psi["Bairro"]].servicos.findIndex(e => e[0] === parseInt(s))
-      if (index == -1) {
-        bairros[psi["Bairro"]].servicos.push([parseInt(s), 1])
-      } else {
-        bairros[psi["Bairro"]].servicos[index][1]++
-      }
+    for (let s of line){
+      bairros[line[0]].servicos.push(s)
     }
+    bairros[line[0]].servicos.splice(0,1)
   }
   return bairros
 }
 
 function loadServicos() {
-  // Verifica quais os serviços ofertados pelos cooperados e quantos os oferecem
-  let servicos_ofertados = []
-  let servicos_ofertados_count = []
-  for (let psi of Cooperados) {
-    for (let ser of psi["Servicos"]) {
-      if (ser == "") continue // Evita resultados em branco
-      if (!servicos_ofertados.includes(ser)) {
-        servicos_ofertados.push(ser)
-        servicos_ofertados_count.push(1)
-      } else {
-        let i = servicos_ofertados.findIndex(a => a == ser)
-        servicos_ofertados_count[i]++
-      }
-    }
-  }
-  // Calcula quais serviços estão na Categoria Frequentes
-  let ranking_servicos = []
-  for (var i = 0; i < servicos_ofertados.length; i++) {
-    ranking_servicos.push([parseInt(servicos_ofertados[i]), servicos_ofertados_count[i]])
-  }
-  ranking_servicos = ranking_servicos.sort((a, b) => b[1] - a[1]).slice(0, 5)
-  for (let i of ranking_servicos) {
-    for (let categoria of servicos) {
-      for (let s of categoria[1]) {
-        if (s[0] == i[0]) {
-          i[1] = s[1]
-        }
-      }
-    }
-  }
-  servicos[0][1] = ranking_servicos
   // Adiciona as opções ao Select
   for (let categoria of servicos) {
     var optgroup = document.createElement('optgroup')
     optgroup.label = categoria[0]
     servicoSelect.appendChild(optgroup);
     for (let s of categoria[1]) {
-      if (servicos_ofertados.includes(s[0].toString())) {
         var opt = document.createElement('option');
         opt.value = s[0];
         opt.innerHTML = s[1];
         optgroup.appendChild(opt);
-      }
     }
   }
 }
@@ -222,7 +101,7 @@ async function showResultados() {
   await sleep(450)
   loading.hidden = true
   // Verifica o serviço escolhido
-  let servico = servicoSelect.value || 0;
+  let servico = servicoSelect.value || -1;
   // Cria uma nova lista pra ordem de exibições
   let resultados = []
   // Converte bairros para uma lista
@@ -232,9 +111,9 @@ async function showResultados() {
   }
   // Filtros
   // Servicos
-  for (let i of Bairros_) {
-    if (i["servicos"].some(e => e[0] === parseInt(servico)) || servico == 0) {
-      resultados.push(i)
+  for (let b of Bairros_) {
+    if (b["servicos"][servico] = 1 || servico == -1) {
+      resultados.push(b)
     }
   }
   // Proximidade
